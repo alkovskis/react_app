@@ -1,11 +1,15 @@
 import React, {Component} from 'react'
 import Login from '../../component/login/Login'
 
-
 class LoginContainer extends Component {
     state = {
         username: '',
         password: '',
+    }
+    componentWillMount() {
+        if (localStorage.getItem('token')) {
+            this.props.history.replace('/about')
+        }
     }
 
     handleChange = name => event => {
@@ -19,7 +23,8 @@ class LoginContainer extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         if (this.state.username === 'admin' && this.state.password === 'test') {
-            this.props.history.push('/about')
+            localStorage.setItem('token', 'ok')
+            this.props.history.replace('/about')
         }
     }
 

@@ -30,6 +30,7 @@ const login = (props) => (
             variant="outlined">
             Login
         </Button>
-    </form>)
+    </form>
+)
 
 export default login;

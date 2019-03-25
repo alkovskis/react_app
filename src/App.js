@@ -1,22 +1,17 @@
-import React, {Component} from 'react'
+import React from 'react'
 import './App.css'
 import LoginContainer from './container/login/LoginContainer'
 import {Route, Switch} from 'react-router-dom'
-import About from './component/about/About'
 import Layout from './component/layout/Layout'
+import Error from './component/error/Error'
 
-class App extends Component {
-    render() {
-        return (
-            <Switch>
-                <Route exact path="/" component={LoginContainer}/>
-                <Layout>
-                    <Route exact path="/about" component={About}/>
-                </Layout>
-            </Switch>
+const app = () => (
+    <Switch>
+        <Route exact path="/" component={LoginContainer}/>
+        <Route exact path="/about" component={Layout}/>
+        <Route component={Error}/>
+    </Switch>
 
-        )
-    }
-}
+)
 
-export default App
+export default app
