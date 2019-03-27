@@ -6,7 +6,6 @@ import About from '../../component/about/About'
 class Layout extends Component {
 
     componentWillMount() {
-        console.log('will mount')
         if (!localStorage.getItem('token')) {
             this.props.history.replace('/')
         }
