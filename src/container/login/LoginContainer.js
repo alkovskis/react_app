@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Login} from '../../component/login/Login'
 import {Formik} from 'formik'
 import * as Yup from 'yup'
+import {Redirect} from 'react-router-dom'
 
 const validationSchema = Yup.object({
 
@@ -30,14 +31,18 @@ class LoginContainer extends Component {
 
     render() {
         const values = {email: '', password: ''}
-        return (
-            <Formik
-                render={props => <Login {...props}/>}
-                initialValues={values}
-                validationSchema={validationSchema}
-                onSubmit={this.submitValues}
-            />
-        )
+        if (localStorage.getItem('token')) {
+            return (
+                <Redirect to='/about'/>
+            )
+        }
+        return <Formik
+            render={props => <Login {...props}/>}
+            initialValues={values}
+            validationSchema={validationSchema}
+            onSubmit={this.submitValues}
+        />
+
     }
 }
 
