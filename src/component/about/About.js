@@ -1,9 +1,9 @@
 import React from 'react'
 
-const about = () => (
+const About = () => (
     <div style={{textAlign: 'center'}}>
-        <h2>Coming soon..</h2>
+        <h2>About page coming soon..</h2>
     </div>
 )
 
-export default about
+export default About
