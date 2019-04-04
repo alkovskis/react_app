@@ -144,13 +144,13 @@ class MiniDrawer extends React.Component {
                         </IconButton>
                     </div>
                     <Divider/>
-                    <ListItem button component={Link} to='/table' key='table'>
-                        <ListItemIcon> <MailIcon/></ListItemIcon>
-                        <ListItemText primary="Table"/>
-                    </ListItem>
                     <ListItem button component={Link} to='/about' key='about'>
                         <ListItemIcon> <InboxIcon/> </ListItemIcon>
                         <ListItemText primary="About"/>
+                    </ListItem>
+                    <ListItem button component={Link} to='/table' key='table'>
+                        <ListItemIcon> <MailIcon/></ListItemIcon>
+                        <ListItemText primary="Table"/>
                     </ListItem>
                 </Drawer>
                 <main className={classes.content}>
