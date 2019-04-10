@@ -2,6 +2,7 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import './Login.css'
+import {Form} from 'formik'
 
 export const Login = props => {
 
@@ -10,38 +11,27 @@ export const Login = props => {
         errors,
         touched,
         handleChange,
-        isValid,
-        setFieldTouched,
-        handleSubmit
+        isSubmitting,
     } = props
 
-    const change = (name, e) => {
-        e.persist()
-        handleChange(e)
-        setFieldTouched(name, true, false)
-    }
-
     return (
-        <form className="Login"
-              onSubmit={handleSubmit}>
+        <Form className="Login">
             <TextField
-                id="outlined-name"
                 name="email"
                 label="Email"
                 value={email}
-                onChange={change.bind(null, 'email')}
+                onChange={handleChange}
                 margin="normal"
                 variant="outlined"
                 helperText={touched.email ? errors.email : ''}
                 error={touched.email && Boolean(errors.email)}
             />
             <TextField
-                id="outlined-name"
                 name="password"
                 label="Password"
                 type="password"
                 value={password}
-                onChange={change.bind(null, 'password')}
+                onChange={handleChange}
                 margin="normal"
                 variant="outlined"
                 helperText={touched.password ? errors.password : ''}
@@ -50,10 +40,10 @@ export const Login = props => {
             <Button
                 type="submit"
                 size="large"
-                disabled={!isValid}
+                disabled={isSubmitting}
                 variant="outlined">
                 Login
             </Button>
-        </form>)
+        </Form>)
 }
 

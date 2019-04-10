@@ -21,12 +21,18 @@ class LoginContainer extends Component {
         password: '123456789',
     }
 
-    submitValues = ({email, password}) => {
-        console.log(email, password)
-        if (email === this.state.email && password === this.state.password) {
-            localStorage.setItem('token', 'ok')
-            this.props.history.replace('/about')
-        }
+    submitValues = ( values,{ setSubmitting, setErrors, resetForm}) => {
+        setTimeout(()=>{
+            if (values.email === this.state.email && values.password === this.state.password) {
+                localStorage.setItem('token', 'ok')
+                this.props.history.replace('/about')
+            }else {
+                setErrors({email: " ",
+                password: "Incorrect email or password"})
+            }
+            setSubmitting(false)
+        },2000)
+
     }
 
     render() {
@@ -41,6 +47,8 @@ class LoginContainer extends Component {
             initialValues={values}
             validationSchema={validationSchema}
             onSubmit={this.submitValues}
+            validateOnChange={false}
+            validateOnBlur={false}
         />
 
     }
