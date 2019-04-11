@@ -1,10 +1,13 @@
 import React from 'react'
 import AppBar from '../appBar/AppBar'
 
-const Layout = ( {...rest}) => {
-   return(
-       <AppBar {...rest}/>
-   )
+const Layout = ({children: children, ...rest}) => {
+    return (
+        <AppBar
+            {...rest}
+            tadasGeriausias3000={children}
+        />
+    )
 }
 
 

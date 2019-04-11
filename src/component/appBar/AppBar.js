@@ -17,8 +17,6 @@ import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
 import {Link} from 'react-router-dom'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab';
 const drawerWidth = 240
 
 const styles = theme => ({
@@ -98,7 +96,6 @@ class MiniDrawer extends React.Component {
 
     render() {
         const {classes, theme} = this.props
-
         return (
             <div className={classes.root}>
                 <CssBaseline/>
@@ -154,7 +151,7 @@ class MiniDrawer extends React.Component {
                 </Drawer>
                 <main className={classes.content}>
                     <div className={classes.toolbar}/>
-                    {this.props.children}
+                    {this.props.tadasGeriausias3000}
                 </main>
             </div>
         )
