@@ -21,7 +21,7 @@ class LoginContainer extends Component {
         password: '123456789',
     }
 
-    submitValues = ( values,{ setSubmitting, setErrors, resetForm}) => {
+    submitValues = ( values,{ setSubmitting, setErrors}) => {
         setTimeout(()=>{
             if (values.email === this.state.email && values.password === this.state.password) {
                 localStorage.setItem('token', 'ok')
@@ -48,7 +48,6 @@ class LoginContainer extends Component {
             validationSchema={validationSchema}
             onSubmit={this.submitValues}
             validateOnChange={false}
-            validateOnBlur={false}
         />
 
     }

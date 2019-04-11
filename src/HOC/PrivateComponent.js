@@ -2,8 +2,8 @@ import {Route, Redirect} from 'react-router-dom'
 import React from 'react'
 import Layout from '../component/layout/Layout'
 
-const PrivateRoute = ({component: Component, ...rest}) => (
-    <Layout>
+const PrivateComponent = ({component: Component, ...rest}) => (
+    <Layout props={"aaaaaa"}>
         <Route {...rest} render={(props) => (
             localStorage.getItem('token')
                 ? <Component{...props}/>
@@ -12,4 +12,4 @@ const PrivateRoute = ({component: Component, ...rest}) => (
     </Layout>
 )
 
-export default PrivateRoute
+export default PrivateComponent
