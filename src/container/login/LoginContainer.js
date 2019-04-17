@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import {Login} from '../../component/login/Login'
 import {Formik} from 'formik'
 import * as Yup from 'yup'
@@ -15,42 +15,39 @@ const validationSchema = Yup.object({
 
 })
 
-class LoginContainer extends Component {
-    state = {
-        email: 'admin@gmail.com',
-        password: '123456789',
+function LoginContainer(path) {
+    const submitValues = (props, values) => {
+        return (
+            setTimeout(() => {
+                if (props.email === 'admin@gmail.com' && props.password === '123456789') {
+                    localStorage.setItem('token', 'ok')
+                    path.history.replace('/about')
+                } else {
+                    values.setErrors({
+                        email: ' ',
+                        password: 'Incorrect email or password'
+                    })
+                }
+                values.setSubmitting(false)
+            }, 2000)
+        )
     }
 
-    submitValues = ( values,{ setSubmitting, setErrors}) => {
-        setTimeout(()=>{
-            if (values.email === this.state.email && values.password === this.state.password) {
-                localStorage.setItem('token', 'ok')
-                this.props.history.replace('/about')
-            }else {
-                setErrors({email: " ",
-                password: "Incorrect email or password"})
-            }
-            setSubmitting(false)
-        },2000)
-
+    const values = {email: '', password: ''}
+    if (localStorage.getItem('token')) {
+        return (
+            <Redirect to='/about'/>
+        )
     }
+    return <Formik
+        render={props => <Login {...props}/>}
+        initialValues={values}
+        validationSchema={validationSchema}
+        onSubmit={submitValues}
+        validateOnChange={false}
+    />
 
-    render() {
-        const values = {email: '', password: ''}
-        if (localStorage.getItem('token')) {
-            return (
-                <Redirect to='/about'/>
-            )
-        }
-        return <Formik
-            render={props => <Login {...props}/>}
-            initialValues={values}
-            validationSchema={validationSchema}
-            onSubmit={this.submitValues}
-            validateOnChange={false}
-        />
 
-    }
 }
 
 export default LoginContainer
